@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MW Aprende - Educação para todos</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7ff;color:#17182d}
+header{background:white;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 3px 15px #0001}
+.logo{font-size:25px;font-weight:bold;color:#635bff}
+nav a{margin-left:18px;color:#444;text-decoration:none}
+button{cursor:pointer;border:0;border-radius:12px;padding:13px 18px;font-weight:bold}
+.primary{background:#635bff;color:white}
+.secondary{background:#eeedff;color:#635bff}
+.hero{padding:65px 7%;display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center;background:linear-gradient(120deg,#f5f3ff,#e8f7ff)}
+h1{font-size:clamp(36px,5vw,58px);line-height:1.1;margin:20px 0}
+h1 span{color:#635bff}
+p{line-height:1.7;color:#697086}
+.tag{display:inline-block;padding:8px 13px;background:#e5e3ff;color:#5146d8;border-radius:30px;font-size:13px;font-weight:bold}
+.art{background:linear-gradient(145deg,#635bff,#958aff);padding:30px;border-radius:28px;color:white;min-height:280px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 20px 50px #635bff30}
+.art h2,.art p{color:white}
+.art .card{background:#ffffff25;padding:16px;border-radius:14px;margin-top:12px}
+section{padding:45px 7%}
+h2{font-size:29px}
+.stats,.subjects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.stat,.subject,.panel{background:white;border:1px solid #e8eaf5;border-radius:20px;padding:22px}
+.stat strong{display:block;font-size:23px;margin-bottom:8px}
+.subject .emoji{font-size:35px;margin-bottom:15px}
+.subject h3{margin:8px 0}
+.subject p{min-height:45px;font-size:14px}
+.subject button{width:100%;margin-top:10px}
+.purple{background:#f0eeff}.green{background:#e3f9ed}.yellow{background:#fff4d8}.blue{background:#e2f3ff}.pink{background:#ffe8f1}.orange{background:#ffeddf}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.answer{display:block;background:#f7f7ff;border:1px solid #e1e3f3;margin:10px 0;width:100%;text-align:left}
+#feedback{font-weight:bold}
+.track{height:10px;background:#e8eaf5;border-radius:20px;overflow:hidden}
+#fill{height:100%;width:0;background:#635bff;transition:.3s}
+.ai{background:#191b36;color:white;border-radius:24px;padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.ai p{color:#d3d6ee}
+input{padding:14px;width:100%;margin:8px 0 14px;border:1px solid #ddd;border-radius:10px;font-size:15px}
+footer{text-align:center;padding:30px;background:white;color:#697086}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:5;align-items:center;justify-content:center;padding:20px}
+.modalbox{background:white;padding:25px;border-radius:20px;width:100%;max-width:420px}
+@media(max-width:750px){.hero,.layout,.ai{grid-template-columns:1fr}.subjects,.stats{grid-template-columns:1fr 1fr}nav a{display:none}}
+@media(max-width:480px){.subjects,.stats{grid-template-columns:1fr}header{padding:15px 5%}section,.hero{padding:35px 5%}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">MW Aprende.</div>
+  <nav>
+    <a href="#materias">Matérias</a>
+    <a href="#atividades">Atividades</a>
+    <a href="#professor">Professor virtual</a>
+    <button class="primary" onclick="abrirLogin()">Entrar / Cadastrar</button>
+  </nav>
+</header>
+
+<main>
+<div class="hero">
+  <div>
+    <span class="tag">🎓 EDUCAÇÃO PARA TODOS</span>
+    <h1>Aprenda mais.<br>Conquiste <span>seus sonhos.</span></h1>
+    <p>Estude no seu ritmo! Aprenda português, matemática, informática, ciências, história e programação em um só lugar.</p>
+    <button class="primary" onclick="document.getElementById('materias').scrollIntoView({behavior:'smooth'})">Começar a estudar →</button>
+    <button class="secondary" onclick="abrirLogin()">Criar conta</button>
+  </div>
+  <div class="art">
+    <div style="font-size:65px;text-align:center">📚 ✨</div>
+    <h2>Conhecimento abre portas!</h2>
+    <div class="card">📈 <b>Aprenda todos os dias</b><br>Desenvolva novas habilidades.</div>
+    <div class="card">🧠 <b>Pratique o que aprendeu</b><br>Responda a desafios e exercícios.</div>
+  </div>
+</div>
+
+<section>
+  <div class="stats">
+    <div class="stat"><strong>📖 6 matérias</strong><p>Áreas de aprendizagem</p></div>
+    <div class="stat"><strong>⏰ No seu ritmo</strong><p>Estude quando quiser</p></div>
+    <div class="stat"><strong>💡 Aprendizado</strong><p>Conhecimento na prática</p></div>
+  </div>
+</section>
+
+<section id="materias">
+  <h2>O que você quer aprender?</h2>
+  <p>Escolha uma matéria para começar.</p>
+  <div class="subjects">
+    <div class="subject"><div class="emoji">✍️</div><h3>Português</h3><p>Leitura, escrita, gramática e interpretação de texto.</p><button class="secondary" onclick="aula('Português')">Explorar aulas →</button></div>
+    <div class="subject"><div class="emoji">➗</div><h3>Matemática</h3><p>Contas, frações, porcentagem e raciocínio lógico.</p><button class="secondary" onclick="aula('Matemática')">Explorar aulas →</button></div>
+    <div class="subject"><div class="emoji">💻</div><h3>Informática</h3><p>Computador, arquivos, internet, Word e Excel.</p><button class="secondary" onclick="aula('Informática')">Explorar aulas →</button></div>
+    <div class="subject"><div class="emoji">🌎</div><h3>Ciências e Geografia</h3><p>Natureza, planeta Terra, mapas e meio ambiente.</p><button class="secondary" onclick="aula('Ciências e Geografia')">Explorar aulas →</button></div>
+    <div class="subject"><div class="emoji">🏛️</div><h3>História</h3><p>História do Brasil, civilizações e acontecimentos.</p><button class="secondary" onclick="aula('História')">Explorar aulas →</button></div>
+    <div class="subject"><div class="emoji">🚀</div><h3>Programação</h3><p>Lógica, criação de sites e primeiros passos no código.</p><button class="secondary" onclick="aula('Programação')">Explorar aulas →</button></div>
+  </div>
+</section>
+
+<section id="atividades">
+  <h2>Hora de praticar!</h2>
+  <p>Resolva este desafio de matemática.</p>
+  <div class="layout">
+    <div class="panel">
+      <span class="tag">DESAFIO DO DIA</span>
+      <h2>Matemática básica</h2>
+      <p>Uma camiseta custa R$ 100 e está com 20% de desconto. Qual é o preço final?</p>
+      <button class="answer" onclick="responder(false)">A) R$ 90,00</button>
+      <button class="answer" onclick="responder(true)">B) R$ 80,00</button>
+      <button class="answer" onclick="responder(false)">C) R$ 20,00</button>
+      <p id="feedback"></p>
+    </div>
+    <div class="panel">
+      <h2>Meu progresso 📊</h2>
+      <p>Desafios respondidos: <b id="done">0</b></p>
+      <div class="track"><div id="fill"></div></div>
+      <p id="progressText">Responda ao desafio para começar.</p>
+      <button class="secondary" onclick="resetar()">Refazer desafio</button>
+    </div>
+  </div>
+</section>
+
+<section id="professor">
+  <div class="ai">
+    <div><span class="tag">🤖 APRENDIZAGEM</span><h2>Professor virtual</h2><p>Digite uma dúvida e veja uma explicação de exemplo. Esta versão ainda não está conectada a uma inteligência artificial real.</p></div>
+    <div><label for="pergunta">O que você quer aprender?</label><input id="pergunta" placeholder="Ex.: como calcular porcentagem?"><button class="primary" onclick="explicar()">Explicar para mim ✨</button><p id="resposta"></p></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="logo">MW Aprende.</div><p>Aprender transforma o futuro. © 2026 MW Aprende.</p><p>Versão demonstrativa publicada como site estático.</p></footer>
+
+<div class="modal" id="modal"><div class="modalbox">
+  <button style="float:right" onclick="fecharLogin()">✕</button>
+  <h2>Bem-vindo ao MW Aprende!</h2>
+  <p>Cadastro demonstrativo: os dados não são salvos nem enviados.</p>
+  <form onsubmit="entrar(event)">
+    <label>Seu nome</label><input id="nome" required placeholder="Digite seu nome">
+    <label>E-mail</label><input type="email" required placeholder="voce@email.com">
+    <label>Senha</label><input type="password" required minlength="6" placeholder="Mínimo de 6 caracteres">
+    <button class="primary" style="width:100%">Entrar na demonstração</button>
+  </form>
+  <p id="mensagem"></p>
+</div></div>
+
+<script>
+let feito=false;
+function abrirLogin(){document.getElementById('modal').style.display='flex'}
+function fecharLogin(){document.getElementById('modal').style.display='none'}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')fecharLogin()});
+function entrar(e){e.preventDefault();document.getElementById('mensagem').textContent='Olá, '+document.getElementById('nome').value+'! O cadastro real ainda precisa ser configurado.'}
+function aula(nome){alert('Você escolheu '+nome+'. As aulas completas serão adicionadas na próxima etapa.');document.getElementById('atividades').scrollIntoView({behavior:'smooth'})}
+function responder(certa){if(feito)return;feito=true;document.getElementById('done').textContent='1';document.getElementById('fill').style.width='100%';document.getElementById('progressText').textContent='Desafio concluído!';let f=document.getElementById('feedback');f.textContent=certa?'✅ Correto! 20% de R$ 100 são R$ 20. O preço final é R$ 80.':'❌ A resposta correta é R$ 80. R$ 100 menos R$ 20 = R$ 80.';f.style.color=certa?'green':'#c43d55'}
+function resetar(){feito=false;document.getElementById('done').textContent='0';document.getElementById('fill').style.width='0';document.getElementById('progressText').textContent='Responda ao desafio para começar.';document.getElementById('feedback').textContent=''}
+function explicar(){let q=document.getElementById('pergunta').value.toLowerCase().trim(),r=document.getElementById('resposta');if(!q){r.textContent='Digite sua dúvida primeiro.';return}
+if(q.includes('porcent')||q.includes('%'))r.textContent='Porcentagem é uma parte de 100. Exemplo: 20% de 100 = 20. Para calcular 20% de 50, faça 50 × 0,20 = 10.';
+else if(q.includes('soma')||q.includes('somar'))r.textContent='Somar é juntar quantidades. Exemplo: 12 + 8 = 20.';
+else if(q.includes('subtra')||q.includes('menos'))r.textContent='Subtrair é tirar uma quantidade. Exemplo: 15 − 6 = 9.';
+else if(q.includes('multiplica')||q.includes('vezes'))r.textContent='Multiplicar é somar grupos iguais. Exemplo: 4 × 3 = 12.';
+else if(q.includes('divid'))r.textContent='Dividir é repartir em partes iguais. Exemplo: 12 ÷ 3 = 4.';
+else if(q.includes('verbo')||q.includes('portugu'))r.textContent='O verbo indica ação, estado ou fenômeno. Em “Eu estudo”, o verbo é “estudo”.';
+else r.textContent='Esta versão contém explicações de exemplo. Uma IA real precisa ser conectada em uma etapa futura.'}
+</script>
+</body>
+</html>
